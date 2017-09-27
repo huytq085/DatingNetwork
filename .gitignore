@@ -1,0 +1,5 @@
+# ignored file patterns
+build
+/.classpath
+/.project
+/.settings
