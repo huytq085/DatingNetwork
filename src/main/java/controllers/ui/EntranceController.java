@@ -1,4 +1,4 @@
-package main.java.controller.ui;
+package main.java.controllers.ui;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BaseController
+ * Servlet implementation class EntranceController
  */
-@WebServlet("/BaseController")
-public class BaseController extends HttpServlet {
+@WebServlet("/EntranceController")
+public class EntranceController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BaseController() {
+    public EntranceController() {
         super();
         // TODO Auto-generated constructor stub
     }
