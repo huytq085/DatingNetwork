@@ -8,11 +8,11 @@
 
     <title>INSPINIA | Register</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="html-design/css/bootstrap.min.css" rel="stylesheet">
+    <link href="html-design/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="html-design/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="html-design/css/animate.css" rel="stylesheet">
+    <link href="html-design/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -27,15 +27,15 @@
             </div>
             <h3>Register to IN+</h3>
             <p>Create account to see it in action.</p>
-            <form class="m-t" role="form" action="login.html">
+            <form class="m-t" role="form" action="signup" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name" required="">
+                    <input type="text" class="form-control" name="userName" placeholder="Name" required="">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" required="">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="">
                 </div>
                 <div class="form-group">
                         <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
@@ -50,10 +50,10 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="html-design/js/jquery-2.1.1.js"></script>
+    <script src="html-design/js/bootstrap.min.js"></script>
     <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script src="html-design/js/plugins/iCheck/icheck.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.i-checks').iCheck({

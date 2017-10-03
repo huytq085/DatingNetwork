@@ -41,6 +41,10 @@
 					<c:if test="${statusLogin == 'invalid'}">
 					   <p style="color: red;">Email or password is incorrect</p>
 					</c:if>
+					<c:if test="${statusLogin == 'notExist'}">
+					   <p style="color: red;">Email is not exist</p>
+					</c:if>
+					
 
                     <form class="m-t" role="form" action="login" method="POST">
                         <div class="form-group">

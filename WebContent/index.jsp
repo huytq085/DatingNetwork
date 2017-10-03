@@ -1,3 +1,9 @@
+
+<%@ page import="main.java.model.user.User" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	User user = (User) request.getAttribute("userInfo");
+%>
 <!DOCTYPE html>
 <html>
 
@@ -80,6 +86,12 @@
             </div>
         </nav>
         </div>
+      
+		<c:if test="${statusSignup == 'success'}">
+		  <div class="alert alert-success">
+		  	<strong>Success!</strong> Indicates a successful or positive action.
+		</div>
+		</c:if>
         <div class="wrapper wrapper-content">
             <div class="container">
             <div class="row">

@@ -31,26 +31,7 @@ public class Authentication extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		User user = null;
-		try {
-			user = UserManager.getInstance().findByUserName(request.getParameter("userName"));
-			if (user != null){
-				if (user.getPassword().equals(request.getParameter("password"))){
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp"); 
-					dispatcher.forward(request, response);
-				} else {
-					request.setAttribute("statusLogin", "invalid");
-					request.setAttribute("userInfo", user);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp"); 
-					dispatcher.forward(request, response);
-				}
-			} else {
-				response.getWriter().append("Username is not exist");
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 	}
 
@@ -59,7 +40,28 @@ public class Authentication extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		User user = null;
+		try {
+			user = UserManager.getInstance().findByUserName(request.getParameter("userName"));
+			if (user != null){
+				request.setAttribute("userInfo", user);
+				if (user.getPassword().equals(request.getParameter("password"))){
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp"); 
+					dispatcher.forward(request, response);
+				} else {
+					request.setAttribute("statusLogin", "invalid");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp"); 
+					dispatcher.forward(request, response);
+				}
+			} else {
+				request.setAttribute("statusLogin", "notExist");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp"); 
+				dispatcher.forward(request, response);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {

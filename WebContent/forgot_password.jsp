@@ -8,11 +8,11 @@
 
     <title>INSPINIA | Forgot password</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="html-design/css/bootstrap.min.css" rel="stylesheet">
+    <link href="html-design/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="html-design/css/animate.css" rel="stylesheet">
+    <link href="html-design/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -33,9 +33,9 @@
                     <div class="row">
 
                         <div class="col-lg-12">
-                            <form class="m-t" role="form" action="index.html">
+                            <form class="m-t" role="form" action="forgot">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email address" required="">
+                                    <input type="email" name="email" class="form-control" placeholder="Email address" required="">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary block full-width m-b">Send new password</button>
