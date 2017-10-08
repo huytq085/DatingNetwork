@@ -42,7 +42,7 @@ public class Authentication extends HttpServlet {
 		// TODO Auto-generated method stub
 		User user = null;
 		try {
-			user = UserManager.getInstance().findByUserName(request.getParameter("userName"));
+			user = UserManager.getInstance().findByUserName(request.getParameter("username"));
 			if (user != null){
 				request.setAttribute("userInfo", user);
 				if (user.getPassword().equals(request.getParameter("password"))){
@@ -54,7 +54,7 @@ public class Authentication extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 			} else {
-				request.setAttribute("statusLogin", "notExist");
+				request.setAttribute("statusLogin", "invalid");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp"); 
 				dispatcher.forward(request, response);
 			}

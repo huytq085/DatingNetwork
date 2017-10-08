@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class User {
-	private String userName;
+	private String username;
 	private String password;
 	private String fullName;
 	private String sex;
@@ -29,10 +29,10 @@ public class User {
 	private Date lastAccess;
 	
 	public String getUserName() {
-		return userName;
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;

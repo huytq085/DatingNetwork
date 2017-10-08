@@ -3,13 +3,10 @@ package main.java.common;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
-
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import main.java.model.user.User;
 
@@ -42,7 +39,7 @@ public class DbConnection {
 			ResultSetHandler<User> resultHandler = new BeanHandler<User>(User.class);
 			Connection conn = new DbConnection().getConnection();
 	        try {
-	        	User user = run.query(conn, "SELECT * FROM user WHERE userName=?",
+	        	User user = run.query(conn, "SELECT * FROM user WHERE username=?",
                         resultHandler, "admin");
                 if (user != null){
                 	System.out.println(user.getUserName());

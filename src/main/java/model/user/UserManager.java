@@ -40,13 +40,13 @@ public class UserManager {
         }
 	}
 	
-	public User findByUserName(String userName) throws Exception{
+	public User findByUserName(String username) throws Exception{
 		QueryRunner run = new QueryRunner();
 		ResultSetHandler<User> resultHandler = new BeanHandler<User>(User.class);
 		Connection conn = new DbConnection().getConnection();
         try {
-        	User user = run.query(conn, "SELECT * FROM user WHERE userName=?",
-                    resultHandler, userName);
+        	User user = run.query(conn, "SELECT * FROM user WHERE username=?",
+                    resultHandler, username);
         	return user;
             
         } finally {
@@ -58,7 +58,7 @@ public class UserManager {
 		QueryRunner run = new QueryRunner();
 		Connection conn = new DbConnection().getConnection();
 		try {
-          int inserts = run.update(conn, "INSERT INTO `dating_datastore`.`user` (`userName`, `password`, `fullName`, `sex`, `description`, `purpose`, `email`, `Phone`, `status`, `dateAdded`, `lastAccess`) VALUES (?, ?, 'Huy Huy', 'Nam', 'Des', 'Pur', ?, '123456', 'ACT', '2014-10-03 11:12:21', '2014-10-03 11:12:21');", params.get("userName"), params.get("password"), params.get("email"));
+          int inserts = run.update(conn, "INSERT INTO `dating_datastore`.`user` (`username`, `password`, `fullName`, `sex`, `description`, `purpose`, `email`, `Phone`, `status`, `dateAdded`, `lastAccess`) VALUES (?, ?, 'Huy Huy', 'Nam', 'Des', 'Pur', ?, '123456', 'ACT', '2014-10-03 11:12:21', '2014-10-03 11:12:21');", params.get("username"), params.get("password"), params.get("email"));
           return inserts;
       } catch (SQLException sqle) {
           // Handle it

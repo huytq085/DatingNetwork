@@ -18,7 +18,7 @@ public class DbManagement {
 			ResultSetHandler<User> resultHandler = new BeanHandler<User>(User.class);
 			Connection conn = new DbConnection().getConnection();
 	        try {
-	        	User user = run.query(conn, "SELECT * FROM user WHERE userName=?",
+	        	User user = run.query(conn, "SELECT * FROM user WHERE username=?",
 	                    resultHandler, "admin");
 	            if (user != null){
 	            	System.out.println(user.getUserName());

@@ -29,7 +29,7 @@
             <p>Create account to see it in action.</p>
             <form class="m-t" role="form" action="signup" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="userName" placeholder="Name" required="">
+                    <input type="text" class="form-control" name="username" placeholder="Name" required="">
                 </div>
                 <div class="form-group">
                     <input type="email" class="form-control" name="email" placeholder="Email" required="">

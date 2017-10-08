@@ -112,7 +112,7 @@
                                         <img alt="image" class="img-responsive" src="html-design/img/profile_big.jpg">
                                     </div>
                                     <div class="ibox-content profile-content">
-                                        <h4><strong>Monica Smith</strong></h4>
+                                        <h4><strong>${user.fullName }</strong></h4>
                                         <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
                                         <h5>
                                             About me
