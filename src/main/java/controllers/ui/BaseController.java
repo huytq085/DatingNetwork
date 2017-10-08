@@ -104,13 +104,17 @@ public class BaseController extends HttpServlet {
 	}
 	
 	private void user(HttpServletRequest request, HttpServletResponse response){
-		String username = getProfile(request.getPathInfo().split("/")[0]);
+		String username = request.getPathInfo().split("/")[1];
 		System.out.println("profileInfo: " + username);
 		try {
 			User user = UserManager.getInstance().findByUserName(username);
-			request.setAttribute("user", user);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
-			dispatcher.forward(request, response);
+			if (user != null){
+				request.setAttribute("user", user);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

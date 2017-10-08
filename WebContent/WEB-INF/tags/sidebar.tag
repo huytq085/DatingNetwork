@@ -11,7 +11,7 @@
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a aria-expanded="false" role="button" href="index"> Back to main Layout page</a>
+                    <a aria-expanded="false" role="button" href="${pageContext.request.contextPath}/index"> Back to main Layout page</a>
                 </li>
                 <li class="dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item <span class="caret"></span></a>
