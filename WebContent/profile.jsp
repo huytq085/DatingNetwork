@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html>
 
-<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | Dashboard v.4</title>
-
-    <link href="html-design/css/bootstrap.min.css" rel="stylesheet">
-    <link href="html-design/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="html-design/css/animate.css" rel="stylesheet">
-    <link href="html-design/css/style.css" rel="stylesheet">
-
-</head>
-
-<body class="top-navigation">
-
-    <div id="wrapper">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<t:genericpage bodyClass="top-navigation pace-done">
+    <jsp:attribute name="header">
+      <title>Homepage</title>
+    </jsp:attribute>
+    <jsp:attribute name="footer">
+      
+    </jsp:attribute>
+    <jsp:body>
+        <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom white-bg">
         <nav class="navbar navbar-static-top" role="navigation">
@@ -311,12 +305,5 @@
 
         </div>
         </div>
-
-
-
-    <!-- Mainly scripts -->
-    <script src="html-design/js/jquery-2.1.1.js"></script>
-    <script src="html-design/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+    </jsp:body>
+</t:genericpage>

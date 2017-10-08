@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html>
 
-<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | Register</title>
-
-    <link href="html-design/css/bootstrap.min.css" rel="stylesheet">
-    <link href="html-design/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="html-design/css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="html-design/css/animate.css" rel="stylesheet">
-    <link href="html-design/css/style.css" rel="stylesheet">
-
-</head>
-
-<body class="gray-bg">
-
-    <div class="middle-box text-center loginscreen   animated fadeInDown">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<t:genericpage bodyClass="gray-bg">
+    <jsp:attribute name="header">
+      <title>Homepage</title>
+    </jsp:attribute>
+    <jsp:attribute name="footer">
+      
+    </jsp:attribute>
+    <jsp:body>
+        <div class="middle-box text-center loginscreen   animated fadeInDown">
         <div>
             <div>
 
@@ -48,20 +41,5 @@
             <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
         </div>
     </div>
-
-    <!-- Mainly scripts -->
-    <script src="html-design/js/jquery-2.1.1.js"></script>
-    <script src="html-design/js/bootstrap.min.js"></script>
-    <!-- iCheck -->
-    <script src="html-design/js/plugins/iCheck/icheck.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-        });
-    </script>
-</body>
-
-</html>
+    </jsp:body>
+</t:genericpage>

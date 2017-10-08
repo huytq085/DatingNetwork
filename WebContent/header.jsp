@@ -1,43 +1,16 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:genericpage bodyClass="top-navigation pace-done">
+<t:genericpage>
     <jsp:attribute name="header">
-      <title>Homepage</title>
+      <h1>Welcome</h1>
     </jsp:attribute>
     <jsp:attribute name="footer">
-      <script>
-        $(document).ready(function() {
-        	var defaultAvt = 'img/default-avt.jpg'
-            $.get('hotprofile', function(data){
-            	console.log(data)
-                for (var key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        var element = data[key];
-                        var profileItem = ''
-                        console.log((element.avatar != null) ? data.avatar : defaultAvt)
-                        profileItem += '<div class="col-lg-4"> <div class="contact-box">'
-                       	profileItem += '<a href="user/'+element.username+'">'
-                       	profileItem += '<div class="col-sm-4"> <div class="text-center">'
-                        profileItem += '<img alt="image" class="img-circle m-t-xs img-responsive" src="'+((element.avatar != null) ? data.avatar : defaultAvt)+'">'
-                        profileItem +='<div class="m-t-xs font-bold">Graphics designer</div> </div> </div> <div class="col-sm-8">' 
-                        profileItem += '<h3><strong>'+element.fullName+'</strong></h3>'
-                        profileItem += ' <p><i class="fa fa-map-marker"></i>'+element.address+'</p>'
-                        profileItem += '<address> <abbr title="Phone">P:</abbr>'+element.phone+'</address>'
-                        profileItem += '</div> <div class="clearfix"></div> </a> </div> </div>'
-                        $('#row-hot-profile').append(profileItem)    
-                    }
-                }
-            })
-        })
-    </script>
+      <p id="copyright">Copyright 1927, Future Bits When There Be Bits Inc.</p>
     </jsp:attribute>
     <jsp:body>
         <div id="wrapper">
-        <div id="page-wrapper" class="gray-bg">
+       	 <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom white-bg">
                 <nav class="navbar navbar-static-top" role="navigation">
                     <div class="navbar-header">
@@ -441,6 +414,6 @@
             </div>
 
         </div>
-    </div>
+    	</div>
     </jsp:body>
 </t:genericpage>

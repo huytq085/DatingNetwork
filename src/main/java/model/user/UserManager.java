@@ -58,7 +58,7 @@ public class UserManager {
 		QueryRunner run = new QueryRunner();
 		Connection conn = new DbConnection().getConnection();
 		try {
-          int inserts = run.update(conn, "INSERT INTO `dating_datastore`.`user` (`username`, `password`, `fullName`, `sex`, `description`, `purpose`, `email`, `Phone`, `status`, `dateAdded`, `lastAccess`) VALUES (?, ?, 'Huy Huy', 'Nam', 'Des', 'Pur', ?, '123456', 'ACT', '2014-10-03 11:12:21', '2014-10-03 11:12:21');", params.get("username"), params.get("password"), params.get("email"));
+          int inserts = run.update(conn, "INSERT INTO `dating_datastore`.`user` (`username`, `password`, `fullName`, `address`, `sex`, `description`, `purpose`, `email`, `Phone`, `status`, `dateAdded`, `lastAccess`) VALUES (?, ?, 'Huy Huy', 'This is address', 'Nam', 'Des', 'Pur', ?, '123456', 'ACT', '2014-10-03 11:12:21', '2014-10-03 11:12:21');", params.get("username"), params.get("password"), params.get("email"));
           return inserts;
       } catch (SQLException sqle) {
           // Handle it
