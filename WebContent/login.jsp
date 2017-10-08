@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
- <t:genericpage bodyClass="gray-bg">
+ <t:temfunc bodyClass="gray-bg">
      <jsp:attribute name="header">
          <title>Homepage</title>
      </jsp:attribute>
@@ -72,4 +72,4 @@
              </div>
          </div>
      </jsp:body>
- </t:genericpage>
+ </t:temfunc>
