@@ -160,27 +160,44 @@ public class BaseController extends HttpServlet {
 		
 	}
 	private void signup(HttpServletRequest request, HttpServletResponse response){
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("username", username);
-		params.put("password", password);
-		params.put("email", email);
-		try {
-			if (UserManager.getInstance().insertUser(params)==1){
-				request.setAttribute("statusSignup", "success");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-				dispatcher.forward(request, response);
-			} else {
-				request.setAttribute("statusSignup", "invalid");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
-				dispatcher.forward(request, response);
+		if (request.getMethod().equals("POST")){
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String email = request.getParameter("email");
+			Map<String, String> params = new HashMap<String, String>();
+			User user = new User();
+//			Test
+			user.setFullName("Au Tuan Long");
+			user.setEmail(email);
+			user.setUserName(username);
+			user.setPassword(password);
+			user.setSex("Nam");
+			user.setStatus("ACT");
+			user.setAddress("HCMC");
+//			/Test
+			try {
+				if (UserManager.getInstance().update(user) != 0){
+					request.setAttribute("statusSignup", "success");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+					dispatcher.forward(request, response);
+				} else {
+					request.setAttribute("statusSignup", "invalid");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
+					dispatcher.forward(request, response);
 
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else {
+			try {
+				response.sendRedirect("register.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 	}
 }

@@ -2,6 +2,7 @@ package main.java.common;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Map;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -11,6 +12,64 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import main.java.model.user.User;
 
 public class DbManagement {
+private static DbManagement dbManagement;
+	
+	public DbManagement(){
+		
+	}
+	
+	public static DbManagement getInstance(){
+		if(dbManagement == null){
+			dbManagement = new DbManagement();
+		}
+		return dbManagement;
+	}
+	public int insert(String tableName, Map<String, Object> params){
+		QueryRunner run = new QueryRunner();
+		try {
+			Connection conn = new DbConnection().getConnection();
+			String statement = "INSERT INTO %s %s";
+			String preStatement = "(%s) VALUES (%s)";
+			Object[] key = params.keySet().toArray();
+			for (int i = 0; i< params.size(); i++){
+				if (i == params.size()-1){
+					preStatement = String.format(preStatement, key[i],"?");
+				} else {
+					preStatement = String.format(preStatement, key[i] + ",%s","?,%s");
+				}
+			}
+			int inserts = run.update(conn, String.format(statement, tableName, preStatement), params.values().toArray());
+			return inserts;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return 0;
+    }
+	public int update(String tableName, Map<String, Object> params, String condition){
+		QueryRunner run = new QueryRunner();
+		try {
+			Connection conn = new DbConnection().getConnection();
+			String statement = "UPDATE %s SET %s WHERE %s";
+			String preStatement = "";
+			Object[] key = params.keySet().toArray();
+			for (int i = 0; i< params.size(); i++){
+				if (i == params.size()-1){
+					preStatement = preStatement.concat((String)key[i] + "=?");
+				} else {
+					preStatement = preStatement.concat((String)key[i] + "=?,");
+				}
+			}
+			System.out.println(String.format(statement, tableName, preStatement,condition));
+			int inserts = run.update(conn, String.format(statement, tableName, preStatement,condition), params.values().toArray());
+			return inserts;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return 0;
+	}
 	public static void main(String[] args) {
 		QueryRunner run = new QueryRunner();
 		

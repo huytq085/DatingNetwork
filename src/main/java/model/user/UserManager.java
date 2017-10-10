@@ -10,6 +10,8 @@ import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import main.java.common.DbConnection;
+import main.java.common.DbManagement;
+import main.java.common.JsonUtils;
 
 public class UserManager {
 	
@@ -54,17 +56,24 @@ public class UserManager {
         }
 	}
 	
-	public int insertUser(Map<String, String> params) throws SQLException{
-		QueryRunner run = new QueryRunner();
-		Connection conn = new DbConnection().getConnection();
+	public int update(User user) throws SQLException{
+		int result = 0;
+		
+		String data = JsonUtils.encode(user);
+		Map<String, Object> params = JsonUtils.decode(data, Map.class);
+		params.put("dateAdded", "2014-10-03 11:12:21");
 		try {
-          int inserts = run.update(conn, "INSERT INTO `dating_datastore`.`user` (`username`, `password`, `fullName`, `address`, `sex`, `description`, `purpose`, `email`, `Phone`, `status`, `dateAdded`, `lastAccess`) VALUES (?, ?, 'Huy Huy', 'This is address', 'Nam', 'Des', 'Pur', ?, '123456', 'ACT', '2014-10-03 11:12:21', '2014-10-03 11:12:21');", params.get("username"), params.get("password"), params.get("email"));
-          return inserts;
-      } catch (SQLException sqle) {
-          // Handle it
-          sqle.printStackTrace();
-      }
-		return 0;
+			User row = findByUserName(user.getUserName());
+			if (row == null){
+				result = DbManagement.getInstance().insert("user", params);
+			} else {
+				return 0;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 			
 	}
 	

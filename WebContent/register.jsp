@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:temfunc bodyClass="gray-bg">
     <jsp:attribute name="header">
@@ -18,6 +18,9 @@
             </div>
             <h3>Register to IN+</h3>
             <p>Create account to see it in action.</p>
+            <c:if test="${statusSignup == 'invalid'}">
+                             <p style="color: red;">Email or Username already exists</p>
+                         </c:if>
             <form class="m-t" role="form" action="signup" method="POST">
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" placeholder="Name" required="">
