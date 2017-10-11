@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.common.DbConnection;
+import main.java.model.user.Friend;
+import main.java.model.user.FriendManager;
 import main.java.model.user.User;
 import main.java.model.user.UserManager;
 
@@ -144,9 +146,13 @@ public class BaseController extends HttpServlet {
 	private void user(HttpServletRequest request, HttpServletResponse response){
 		String username = request.getPathInfo().split("/")[1];
 		System.out.println("profileInfo: " + username);
+		
 		try {
 			User user = UserManager.getInstance().findByUserName(username);
 			if (user != null){
+				FriendManager.getInstance();
+				List<Friend> listFriend = FriendManager.findFriends(user);
+				request.setAttribute("listFriend", listFriend);
 				request.setAttribute("userProfile", user);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
 				dispatcher.forward(request, response);

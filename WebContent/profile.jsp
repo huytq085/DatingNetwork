@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <i class="fa fa-users text-center" style="color: #1ab394;"></i>
-                                            <h5><strong>28</strong> Friends</h5>
+                                            <h5><strong>${listFriend.size() }</strong> Friends</h5>
                                         </div>
                                     </div>
                                     <div class="user-button">
