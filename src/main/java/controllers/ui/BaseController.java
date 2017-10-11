@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -58,8 +59,14 @@ public class BaseController extends HttpServlet {
 			case "/signup":
 				signup(request, response);
 				break;
+			case "/signout":
+				signout(request, response);
+				break;
 			case "/user":
 				user(request, response);
+				break;
+			case "/index":
+				index(request, response);
 				break;
 			default:
 				break;
@@ -73,6 +80,22 @@ public class BaseController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private void index(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		System.out.println(user.getUserName());
+		RequestDispatcher dispatcher =  request.getRequestDispatcher("/");
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void signin(HttpServletRequest request, HttpServletResponse response){
@@ -103,13 +126,28 @@ public class BaseController extends HttpServlet {
 		
 	}
 	
+	private void signout(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user != null){
+			session.removeAttribute("user");
+		}
+		try {
+			System.out.println("signout");
+			response.sendRedirect(request.getContextPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	private void user(HttpServletRequest request, HttpServletResponse response){
 		String username = request.getPathInfo().split("/")[1];
 		System.out.println("profileInfo: " + username);
 		try {
 			User user = UserManager.getInstance().findByUserName(username);
 			if (user != null){
-				request.setAttribute("user", user);
+				request.setAttribute("userProfile", user);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
 				dispatcher.forward(request, response);
 			} else {

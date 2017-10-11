@@ -8,11 +8,11 @@
 
     <title>INSPINIA | Forgot password</title>
 
-    <link href="html-design/css/bootstrap.min.css" rel="stylesheet">
-    <link href="html-design/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <link href="html-design/css/animate.css" rel="stylesheet">
-    <link href="html-design/css/style.css" rel="stylesheet">
+    <link href="public/css/animate.css" rel="stylesheet">
+    <link href="public/css/style.css" rel="stylesheet">
 
 </head>
 

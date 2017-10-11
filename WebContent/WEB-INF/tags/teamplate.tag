@@ -3,6 +3,7 @@
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 <%@attribute name="bodyClass" required="true"%>
+<%@attribute name="user" required="false" type="main.java.model.user.User"%>
 <!DOCTYPE html>
 <html>
 <head>

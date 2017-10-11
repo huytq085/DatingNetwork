@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import main.java.model.user.User;
 import main.java.model.user.UserManager;
@@ -31,8 +32,10 @@ public class Authentication extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
+		HttpSession session = request.getSession();
+		if (session.isNew()){
+			
+		}
 	}
 
 	/**
@@ -40,14 +43,15 @@ public class Authentication extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
 		User user = null;
 		try {
 			user = UserManager.getInstance().findByUserName(request.getParameter("username"));
 			if (user != null){
-				request.setAttribute("userInfo", user);
+				
 				if (user.getPassword().equals(request.getParameter("password"))){
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp"); 
-					dispatcher.forward(request, response);
+					session.setAttribute("user", user);
+					response.sendRedirect(request.getContextPath());
 				} else {
 					request.setAttribute("statusLogin", "invalid");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp"); 

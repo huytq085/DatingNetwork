@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-	<error-page>
-        <location>/404.jsp</location>
-    </error-page>
+  <error-page>
+    <location>/404.jsp</location>
+  </error-page>
   <context-param>
-        <param-name>ProjectURI</param-name>
-        <param-value>/DatingNetwork</param-value>
-    </context-param>
+    <param-name>ProjectURI</param-name>
+    <param-value>/DatingNetwork</param-value>
+  </context-param>
   <servlet>
     <servlet-name>Authentication</servlet-name>
     <servlet-class>main.java.controllers.ui.Authentication</servlet-class>
@@ -25,16 +25,10 @@
     <url-pattern>/hotprofile</url-pattern>
     <url-pattern>/forgot</url-pattern>
     <url-pattern>/signup</url-pattern>
+    <url-pattern>/signout</url-pattern>
     <url-pattern>/signin</url-pattern>
-  </servlet-mapping>
-  
-	<servlet>
-    <servlet-name>Index</servlet-name>
-    <jsp-file>/index.jsp</jsp-file>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>Index</servlet-name>
     <url-pattern>/index</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
+
+
 </web-app>
