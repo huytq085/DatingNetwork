@@ -2,6 +2,7 @@ package main.java.model.user;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.dbutils.DbUtils;
@@ -49,6 +50,12 @@ public class UserManager {
         try {
         	User user = run.query(conn, "SELECT * FROM user WHERE username=?",
                     resultHandler, username);
+        	if (user != null){
+        		List<Friend> friendList = FriendManager.getInstance().findFriends(user);
+        		if (friendList.size() > 0){
+        			user.setFriends(friendList);
+        		}
+        	}
         	return user;
             
         } finally {

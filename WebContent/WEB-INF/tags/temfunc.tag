@@ -7,6 +7,7 @@
 <html>
 <head>
 	<jsp:invoke fragment="header"/>
+	<base href="${pageContext.request.contextPath}/"/>
 	<t:header></t:header>
 </head>
 

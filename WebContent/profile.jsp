@@ -5,7 +5,6 @@
 <%
 	User userProfile = (User) request.getAttribute("userProfile");
 	String avatar = userProfile.getAvatar() != null ? userProfile.getAvatar() : "public/img/default-avt.jpg";
-	System.out.print(userProfile.getAvatar());
 	request.setAttribute("avatar", avatar);
 %>
 <t:template bodyClass="top-navigation pace-done">
@@ -61,7 +60,16 @@
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <i class="fa fa-users text-center" style="color: #1ab394;"></i>
-                                            <h5><strong>${listFriend.size() }</strong> Friends</h5>
+                                            <c:choose>
+                                            	<c:when test="${userProfile.getFriends().size() > 0}">
+	                                            	<h5><strong>${userProfile.getFriends().size() }</strong> Friends</h5>	
+	                                            </c:when>
+	                                            <c:otherwise>
+	                                            	<h5><strong>0</strong> Friends</h5>	
+	                                            </c:otherwise>
+                                            </c:choose>
+                                            
+                                            
                                         </div>
                                     </div>
                                     <div class="user-button">

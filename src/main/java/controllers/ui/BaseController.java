@@ -147,9 +147,6 @@ public class BaseController extends HttpServlet {
 		try {
 			User user = UserManager.getInstance().findByUserName(username);
 			if (user != null){
-				FriendManager.getInstance();
-				List<Friend> listFriend = FriendManager.findFriends(user);
-				request.setAttribute("listFriend", listFriend);
 				request.setAttribute("userProfile", user);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
 				dispatcher.forward(request, response);

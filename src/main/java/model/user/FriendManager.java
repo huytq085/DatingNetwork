@@ -30,33 +30,23 @@ public class FriendManager {
 		return friendManager;
 	}
 
-	public static List<Friend> findFriends(User user) throws SQLException {
+	public List<Friend> findFriends(User user) throws SQLException {
 		QueryRunner run = new QueryRunner();
 		Connection conn = new DbConnection().getConnection();
 		ResultSetHandler<List<Friend>> resultListHandler = new BeanListHandler<Friend>(Friend.class);
+		List<Friend> friendList = new ArrayList<Friend>();
 		try {
-			List<Friend> frList = run.query(conn, "SELECT * FROM friend where user1=" + user.getId(), resultListHandler);
-			if (frList.size() > 0) {
-				return frList;
+			friendList = run.query(conn, "SELECT * FROM friend where user1=" + user.getId(), resultListHandler);
+			if (friendList.size() > 0) {
+				return friendList;
 			}
 			
 		} finally {
 			DbUtils.close(conn);
 		}
-		return null;
+		return friendList;
 	}
 
 	public static void main(String[] args) {
-		try {
-			User user = new User();
-			user.setId(1);
-			user.setFriends(findFriends(user));
-			for (Friend fr : user.getFriends()) {
-				System.out.println(fr.getUser2());
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
