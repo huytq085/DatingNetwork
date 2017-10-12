@@ -85,9 +85,6 @@ public class BaseController extends HttpServlet {
 	}
 	
 	private void index(HttpServletRequest request, HttpServletResponse response){
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		System.out.println(user.getUserName());
 		RequestDispatcher dispatcher =  request.getRequestDispatcher("/");
 		try {
 			dispatcher.forward(request, response);

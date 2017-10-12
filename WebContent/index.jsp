@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:teamplate bodyClass="top-navigation pace-done" user="${user}">
+<t:template bodyClass="top-navigation pace-done" user="${user}">
     <jsp:attribute name="header">
         <title>Homepage</title>
     </jsp:attribute>
@@ -20,7 +20,7 @@
                             profileItem += '<div class="col-lg-4"> <div class="contact-box">'
                             profileItem += '<a href="user/' + element.username + '">'
                             profileItem += '<div class="col-sm-4"> <div class="text-center">'
-                            profileItem += '<img alt="image" class="img-circle m-t-xs img-responsive" src="' + ((typeof(element.avatar) != "undefined") ? "${pageContext.request.contextPath}" + element.avatar : defaultAvt) + '">'
+                            profileItem += '<img alt="image" class="img-circle m-t-xs img-responsive" src="' + ((typeof(element.avatar) != "undefined") ? element.avatar : defaultAvt) + '">'
                             profileItem += '<div class="m-t-xs font-bold">Graphics designer</div> </div> </div> <div class="col-sm-8">'
                             profileItem += '<h3><strong>' + element.fullName + '</strong></h3>'
                             profileItem += ' <p><i class="fa fa-map-marker"></i>' + element.address + '</p>'
@@ -130,7 +130,7 @@
                                             <div class="chat-discussion">
 
                                                 <div class="chat-message left">
-                                                    <img class="message-avatar" src="${pageContext.request.contextPath}/public/img/a1.jpg" alt="">
+                                                    <img class="message-avatar" src="public/img/a1.jpg" alt="">
                                                     <div class="message">
                                                         <a class="message-author" href="#"> Michael Smith </a>
                                                         <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
@@ -140,7 +140,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="chat-message right">
-                                                    <img class="message-avatar" src="${pageContext.request.contextPath}/public/img/a4.jpg" alt="">
+                                                    <img class="message-avatar" src="public/img/a4.jpg" alt="">
                                                     <div class="message">
                                                         <a class="message-author" href="#"> Karl Jordan </a>
                                                         <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
@@ -150,7 +150,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="chat-message right">
-                                                    <img class="message-avatar" src="${pageContext.request.contextPath}/public/img/a2.jpg" alt="">
+                                                    <img class="message-avatar" src="public/img/a2.jpg" alt="">
                                                     <div class="message">
                                                         <a class="message-author" href="#"> Michael Smith </a>
                                                         <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
@@ -160,7 +160,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="chat-message left">
-                                                    <img class="message-avatar" src="${pageContext.request.contextPath}/public/img/a5.jpg" alt="">
+                                                    <img class="message-avatar" src="public/img/a5.jpg" alt="">
                                                     <div class="message">
                                                         <a class="message-author" href="#"> Alice Jordan </a>
                                                         <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
@@ -171,7 +171,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="chat-message right">
-                                                    <img class="message-avatar" src="${pageContext.request.contextPath}/public/img/a6.jpg" alt="">
+                                                    <img class="message-avatar" src="public/img/a6.jpg" alt="">
                                                     <div class="message">
                                                         <a class="message-author" href="#"> Mark Smith </a>
                                                         <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
@@ -191,52 +191,52 @@
 
                                                 <div class="users-list">
                                                     <div class="chat-user">
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a4.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a4.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Karl Jordan</a>
                                                         </div>
                                                     </div>
                                                     <div class="chat-user">
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a1.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a1.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Monica Smith</a>
                                                         </div>
                                                     </div>
                                                     <div class="chat-user">
                                                         <span class="pull-right label label-primary">Online</span>
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a2.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a2.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Michael Smith</a>
                                                         </div>
                                                     </div>
                                                     <div class="chat-user">
                                                         <span class="pull-right label label-primary">Online</span>
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a3.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a3.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Janet Smith</a>
                                                         </div>
                                                     </div>
                                                     <div class="chat-user">
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a5.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a5.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Alice Smith</a>
                                                         </div>
                                                     </div>
                                                     <div class="chat-user">
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a6.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a6.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Monica Cale</a>
                                                         </div>
                                                     </div>
                                                     <div class="chat-user">
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a2.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a2.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Mark Jordan</a>
                                                         </div>
                                                     </div>
                                                     <div class="chat-user">
                                                         <span class="pull-right label label-primary">Online</span>
-                                                        <img class="chat-avatar" src="${pageContext.request.contextPath}/public/img/a3.jpg" alt="">
+                                                        <img class="chat-avatar" src="public/img/a3.jpg" alt="">
                                                         <div class="chat-user-name">
                                                             <a href="#">Janet Smith</a>
                                                         </div>
@@ -351,4 +351,4 @@
         </div>
 
     </jsp:body>
-</t:teamplate>
+</t:template>

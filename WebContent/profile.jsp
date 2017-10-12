@@ -4,11 +4,11 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%
 	User userProfile = (User) request.getAttribute("userProfile");
-	String avatar = userProfile.getAvatar() != null ? userProfile.getAvatar() : "/public/img/default-avt.jpg";
+	String avatar = userProfile.getAvatar() != null ? userProfile.getAvatar() : "public/img/default-avt.jpg";
 	System.out.print(userProfile.getAvatar());
 	request.setAttribute("avatar", avatar);
 %>
-<t:teamplate bodyClass="top-navigation pace-done">
+<t:template bodyClass="top-navigation pace-done">
     <jsp:attribute name="header">
         <title>Trang cá nhân | ${userProfile.fullName}</title>
     </jsp:attribute>
@@ -22,7 +22,7 @@
                     <h2>Profile</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="abc">Home</a>
                         </li>
                         <li>
                             <a>Extra Pages</a>
@@ -45,7 +45,7 @@
                             </div>
                             <div>
                                 <div class="ibox-content no-padding border-left-right text-center">
-                                    <img alt="image" class="img-responsive" src="${pageContext.request.contextPath}${avatar}" style="margin: 0 auto;">
+                                    <img alt="image" class="img-responsive" src="${avatar}" style="margin: 0 auto;">
                                 </div>
                                 <div class="ibox-content profile-content">
                                     <h4><strong>${userProfile.fullName}</strong></h4>
@@ -107,7 +107,7 @@
 
                                         <div class="feed-element">
                                             <a href="#" class="pull-left">
-                                                <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/img/a1.jpg">
+                                                <img alt="image" class="img-circle" src="/img/a1.jpg">
                                             </a>
                                             <div class="media-body ">
                                                 <small class="pull-right text-navy">1m ago</small>
@@ -123,7 +123,7 @@
 
                                         <div class="feed-element">
                                             <a href="#" class="pull-left">
-                                                <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/img/profile.jpg">
+                                                <img alt="image" class="img-circle" src="/public/img/profile.jpg">
                                             </a>
                                             <div class="media-body ">
                                                 <small class="pull-right">5m ago</small>
@@ -234,4 +234,4 @@
             </div>
         </div>
     </jsp:body>
-</t:teamplate>
+</t:template>

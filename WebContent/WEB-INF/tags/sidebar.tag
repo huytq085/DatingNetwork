@@ -12,7 +12,7 @@
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a aria-expanded="false" role="button" href="${pageContext.request.contextPath}/index"> Back to main Layout page</a>
+                    <a aria-expanded="false" role="button" href=""> Back to main Layout page</a>
                 </li>
                 <li class="dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item <span class="caret"></span></a>
@@ -71,7 +71,7 @@
             <ul class="nav navbar-top-links navbar-right">
             	<c:if test="${not empty user.fullName}">
                    <li>
-				        <span class="m-r-sm text-muted welcome-message">Hello, <a href="${pageContext.request.contextPath}/user/${user.getUserName()}" style="padding: 0;"><strong>${user.fullName}</strong> </a></span>
+				        <span class="m-r-sm text-muted welcome-message">Hello, <a href="user/${user.getUserName()}" style="padding: 0;"><strong>${user.fullName}</strong> </a></span>
 				    </li>
                  </c:if>
                 
@@ -83,7 +83,7 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                    <img alt="image" class="img-circle" src="public/img/a7.jpg">
                                 </a>
                                 <div class="media-body">
                                     <small class="pull-right">46h ago</small>
@@ -96,7 +96,7 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                    <img alt="image" class="img-circle" src="public/img/a4.jpg">
                                 </a>
                                 <div class="media-body ">
                                     <small class="pull-right text-navy">5h ago</small>
@@ -109,7 +109,7 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                    <img alt="image" class="img-circle" src="public/img/profile.jpg">
                                 </a>
                                 <div class="media-body ">
                                     <small class="pull-right">23h ago</small>
@@ -175,14 +175,14 @@
                 <c:choose>
 				    <c:when test="${empty user.fullName}">
 				        <li>
-		                    <a href="${pageContext.request.contextPath}/signin">
+		                    <a href="signin">
 		                        <i class="fa fa-sign-out"></i> Log in
 		                    </a>
 		                </li>
 				    </c:when>
 				    <c:otherwise>
 						<li>
-		                    <a href="${pageContext.request.contextPath}/signout">
+		                    <a href="signout">
 		                        <i class="fa fa-sign-in"></i> Log out
 		                    </a>
 		                </li>
