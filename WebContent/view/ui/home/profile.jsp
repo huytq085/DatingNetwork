@@ -49,6 +49,7 @@
                                 <div class="ibox-content profile-content">
                                     <h4><strong>${userProfile.fullName}</strong></h4>
                                     <p><i class="fa fa-map-marker"></i> ${userProfile.address}</p>
+                                    <p>${userProfile.sex}</p>
                                     <h5>About me</h5>
                                     <p>
                                         ${userProfile.description}

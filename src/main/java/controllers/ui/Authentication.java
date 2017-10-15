@@ -54,12 +54,12 @@ public class Authentication extends HttpServlet {
 					response.sendRedirect(request.getContextPath());
 				} else {
 					request.setAttribute("statusLogin", "invalid");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp"); 
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/login.jsp"); 
 					dispatcher.forward(request, response);
 				}
 			} else {
 				request.setAttribute("statusLogin", "invalid");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp"); 
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/login.jsp"); 
 				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {

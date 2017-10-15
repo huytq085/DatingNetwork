@@ -12,6 +12,7 @@ public class User {
 	private String password;
 	private String fullName;
 	private String sex;
+	private String job;
 	private String description;
 	private String purpose;
 	private String email;
@@ -156,6 +157,12 @@ public class User {
 	}
 	public void setLastAccess(Date lastAccess) {
 		this.lastAccess = lastAccess;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
 	}
 	
 	

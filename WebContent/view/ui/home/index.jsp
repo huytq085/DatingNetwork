@@ -6,9 +6,25 @@
 <t:template bodyClass="top-navigation pace-done" user="${user}">
     <jsp:attribute name="header">
         <title>Homepage</title>
+        <link href="public/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     </jsp:attribute>
     <jsp:attribute name="footer">
+    	<!-- Toastr -->
+    <script src="public/js/plugins/toastr/toastr.min.js"></script>
+    	
         <script>
+        	if ('${statusSignup}' == 'success'){
+        		setTimeout(function() {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.success('Your account has been created successfully and is ready to use', 'Welcome to INSPINIA');
+
+                }, 1300);
+        	}
             $(document).ready(function() {
                 var defaultAvt = 'public/img/default-avt.jpg'
                 $.get('hotprofile', function(data) {
@@ -23,8 +39,8 @@
                             profileItem += '<img alt="image" class="img-circle m-t-xs img-responsive" src="' + ((typeof(element.avatar) != "undefined") ? element.avatar : defaultAvt) + '">'
                             profileItem += '<div class="m-t-xs font-bold">Graphics designer</div> </div> </div> <div class="col-sm-8">'
                             profileItem += '<h3><strong>' + element.fullName + '</strong></h3>'
-                            profileItem += ' <p><i class="fa fa-map-marker"></i>' + element.address + '</p>'
-                            profileItem += '<address> <abbr title="Phone">P:</abbr>' + element.phone + '</address>'
+                            profileItem += ' <p><i class="fa fa-map-marker"></i> ' + element.address + '</p>'
+                            profileItem += '<p>' + element.phone + '</p>'
                             profileItem += '</div> <div class="clearfix"></div> </a> </div> </div>'
                             $('#row-hot-profile').append(profileItem)
                         }
@@ -34,13 +50,9 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <c:if test="${statusSignup == 'success'}">
-            <div class="alert alert-success">
-                <strong>Success!</strong> Indicates a successful or positive action.
-            </div>
-        </c:if>
         <div class="wrapper wrapper-content">
             <div class="container">
+<!-- 
                 <div class="row">
                     <div class="col-md-2">
                         <div class="ibox float-e-margins">
@@ -329,13 +341,13 @@
                     </div>
 
                 </div>
-
+-->
                 <div class="row">
 
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>Hot Profile </h5>
+                                <h5>New profiles </h5>
                             </div>
                             <div class="ibox-content">
                                 <div class="row" id="row-hot-profile">

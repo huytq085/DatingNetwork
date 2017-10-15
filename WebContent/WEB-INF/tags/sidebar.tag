@@ -7,66 +7,14 @@
             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                 <i class="fa fa-reorder"></i>
             </button>
-            <a href="#" class="navbar-brand">Home</a>
+            <a href="" class="navbar-brand">Trang chủ</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a aria-expanded="false" role="button" href=""> Back to main Layout page</a>
-                </li>
-                <li class="dropdown">
-                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                        <li><a href="">Menu item</a>
-                        </li>
-                    </ul>
-                </li>
-
+                <li><a href="category/female">Tìm bạn gái</a></li>
+                <li><a href="category/male">Tìm bạn trai</a></li>
+                <li><a href="category/gay">Gay</a></li>
+                <li><a href="category/les">Les</a></li>
             </ul>
             <ul class="nav navbar-top-links navbar-right">
             	<c:if test="${not empty user.fullName}">
@@ -171,7 +119,7 @@
                     </ul>
                 </li>
 
-
+				
                 <c:choose>
 				    <c:when test="${empty user.fullName}">
 				        <li>
@@ -181,10 +129,20 @@
 		                </li>
 				    </c:when>
 				    <c:otherwise>
-						<li>
-		                    <a href="signout">
-		                        <i class="fa fa-sign-in"></i> Log out
-		                    </a>
+						<li class="dropdown">
+		                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <span class="caret"></span></a>
+		                    <ul role="menu" class="dropdown-menu">
+		                        <li>
+		                        	<a href="">
+		                        		<i class="fa fa-cog"></i> Settings
+		                        	</a>
+		                        </li>
+		                        <li>
+				                    <a href="signout">
+				                        <i class="fa fa-sign-in"></i> Log out
+				                    </a>
+				                </li>
+		                    </ul>
 		                </li>
 				    </c:otherwise>
 				</c:choose>
