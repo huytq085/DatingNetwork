@@ -16,6 +16,7 @@ public class User {
 	private String description;
 	private String purpose;
 	private String email;
+	private String matrimony;
 	private int phone;
 	private String status;
 	private String address;
@@ -163,6 +164,12 @@ public class User {
 	}
 	public void setJob(String job) {
 		this.job = job;
+	}
+	public String getMatrimony() {
+		return matrimony;
+	}
+	public void setMatrimony(String matrimony) {
+		this.matrimony = matrimony;
 	}
 	
 	

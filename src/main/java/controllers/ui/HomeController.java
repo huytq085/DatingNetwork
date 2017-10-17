@@ -5,11 +5,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +27,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.common.DbConnection;
+import main.java.common.DbManagement;
+import main.java.common.JsonUtils;
 import main.java.model.user.User;
 import main.java.model.user.UserManager;
 
@@ -111,29 +115,22 @@ public class HomeController extends HttpServlet {
 		String sex = request.getPathInfo().split("/")[1];
 		System.out.println("sex");
 		if (sex != null && sex.toLowerCase().matches("male|female|gay|les")) {
-			System.out.println("match");
-			QueryRunner run = new QueryRunner();
-			Connection conn;
-			ResultSetHandler<List<User>> resultListHandler = new BeanListHandler<User>(User.class);
 			List<User> listProfile = new ArrayList<>();
-			try {
-				conn = new DbConnection().getConnection();
+			String stm = "SELECT * FROM user WHERE sex=\"" + sex + "\"";
+			listProfile = DbManagement.getInstance().findAll(stm, User.class);
+			if (listProfile.size() > 0) {
+				System.out.println("list");
+				request.setAttribute("listProfile", listProfile);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/category.jsp");
 				try {
-					listProfile = run.query(conn, "SELECT * FROM user WHERE sex=\"" + sex + "\"", resultListHandler);
-					if (listProfile.size() > 0) {
-						System.out.println("list");
-						request.setAttribute("listProfile", listProfile);
-						RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/category.jsp");
-						dispatcher.forward(request, response);
-					}
-				} catch (Exception e) {
-					// TODO: handle exception
-				} finally {
-					DbUtils.close(conn);
+					dispatcher.forward(request, response);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		} else {
 			try {
@@ -208,10 +205,12 @@ public class HomeController extends HttpServlet {
 	}
 
 	private void hotProfile(HttpServletRequest request, HttpServletResponse response) {
-		String profiles = getHotProfile();
+		List<User> listProfile = new ArrayList<User>();
+		String stm = "SELECT * FROM user";
+		listProfile = DbManagement.getInstance().findAll(stm, User.class);
 		try {
 			response.setContentType("application/json");
-			response.getWriter().write(profiles);
+			response.getWriter().write(JsonUtils.encode(listProfile));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -219,25 +218,10 @@ public class HomeController extends HttpServlet {
 	}
 
 	public String getHotProfile() {
-		QueryRunner run = new QueryRunner();
-		Connection conn;
-		List<String> listProfile = new ArrayList<String>();
-		try {
-			conn = new DbConnection().getConnection();
-			try {
-				List<Map<String, Object>> maps = run.query(conn, "SELECT * FROM user", new MapListHandler());
-				Gson gson = new GsonBuilder().create();
-				for (int i = 0; i < maps.size(); i++) {
-					listProfile.add(gson.toJson(maps.get(i)));
-				}
-			} finally {
-				DbUtils.close(conn);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return listProfile.size() > 0 ? listProfile.toString() : null;
+		List<User> listProfile = new ArrayList<User>();
+		String stm = "SELECT * FROM user";
+		listProfile = DbManagement.getInstance().findAll(stm, User.class);
+		return listProfile.size() > 0 ? JsonUtils.encode(listProfile) : null;
 	}
 
 	public String getProfile(String username) {
@@ -248,27 +232,39 @@ public class HomeController extends HttpServlet {
 
 	private void signup(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getMethod().equals("POST")) {
+			HttpSession session = request.getSession();
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String email = request.getParameter("email");
-			Map<String, String> params = new HashMap<String, String>();
+			String fullName = request.getParameter("fullName");
+			String sex = request.getParameter("sex");
+			String matrimony = request.getParameter("matrimony");
+			String description = request.getParameter("description");
+			String avatar = request.getParameter("avatar");
+			String city = request.getParameter("city");
+			String address = request.getParameter("address");
+			if (avatar == null){
+				avatar = getServletContext().getInitParameter("defaultAvatar");
+			}
 			User user = new User();
-			// Test
-			user.setFullName("Au Tuan Long");
+			user.setFullName(fullName);
 			user.setEmail(email);
 			user.setUserName(username);
 			user.setPassword(password);
-			user.setSex("Nam");
+			user.setSex(sex);
 			user.setStatus("ACT");
-			user.setAddress("HCMC");
-			user.setJob("IT");
-			// /Test
+			user.setMatrimony(matrimony);
+			user.setAvatar(avatar);
+			user.setDescription(description);
+			user.setCity(city);
+			user.setAddress(address);
+			
 			try {
 				if (UserManager.getInstance().update(user) != 0) {
-					request.setAttribute("statusSignup", "success");
-					request.setAttribute("user", user);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/index.jsp");
-					dispatcher.forward(request, response);
+					session.setAttribute("user", user);
+					Cookie userCookie = new Cookie("statusSignup", "success");
+					response.addCookie(userCookie);
+					response.sendRedirect(request.getContextPath());
 				} else {
 					request.setAttribute("statusSignup", "invalid");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/register.jsp");

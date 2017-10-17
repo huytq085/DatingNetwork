@@ -4,4 +4,7 @@
 <link href="public/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="public/css/animate.css" rel="stylesheet">
 <link href="public/css/style.css" rel="stylesheet">
+<link href="public/css/custom.css" rel="stylesheet">
+<link href="public/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+<link href="public/css/plugins/iCheck/custom.css" rel="stylesheet">
   

@@ -1,14 +1,24 @@
 package main.java.common;
 
+import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import com.google.gson.reflect.TypeToken;
+
+import main.java.model.user.Friend;
+import main.java.model.user.FriendManager;
 import main.java.model.user.User;
 
 public class DbManagement {
@@ -24,6 +34,50 @@ private static DbManagement dbManagement;
 		}
 		return dbManagement;
 	}
+	
+	
+	public <T> T executeQuery(String statement, Class<T> clazz){
+		QueryRunner run = new QueryRunner();
+		ResultSetHandler<T> resultHandler = new BeanHandler<T>(clazz);
+		Connection conn;
+		try {
+			conn = new DbConnection().getConnection();
+			try {
+				System.out.println(statement);
+	        	T t = run.query(conn, statement, resultHandler);
+	        	if (t != null){
+	        		return t;
+	        	}
+	        } finally {
+	            DbUtils.close(conn);
+	        }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public <T> List<T> findAll(String statement, Class<T> clazz) {
+		QueryRunner run = new QueryRunner();
+		List<T> list = new ArrayList<T>();
+		try {
+			Connection conn = new DbConnection().getConnection();
+			ResultSetHandler<List<T>> resultListHandler = new BeanListHandler<T>(clazz);
+			try {
+				list = run.query(conn, statement, resultListHandler);
+			} catch (Exception e) {
+				// TODO: handle exception
+			} finally {
+				DbUtils.close(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public int insert(String tableName, Map<String, Object> params){
 		QueryRunner run = new QueryRunner();
 		try {

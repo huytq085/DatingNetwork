@@ -30,37 +30,29 @@ public class UserManager {
 	}
 	
 	public User findByEmail(String email) throws Exception{
-		QueryRunner run = new QueryRunner();
-		ResultSetHandler<User> resultHandler = new BeanHandler<User>(User.class);
-		Connection conn = new DbConnection().getConnection();
-        try {
-        	User user = run.query(conn, "SELECT * FROM user WHERE email=?",
-                    resultHandler, email);
-        	return user;
-            
-        } finally {
-            DbUtils.close(conn);
-        }
+		String statement = "SELECT * FROM user WHERE user = email=\""+email+"\"";
+		User user = (User) DbManagement.getInstance().executeQuery(statement, User.class);
+    	if (user != null){
+    		List<Friend> friendList = FriendManager.getInstance().findFriends(user);
+    		if (friendList.size() > 0){
+    			user.setFriends(friendList);
+    		}
+    		return user;
+    	}
+    	return null;
 	}
 	
 	public User findByUserName(String username) throws Exception{
-		QueryRunner run = new QueryRunner();
-		ResultSetHandler<User> resultHandler = new BeanHandler<User>(User.class);
-		Connection conn = new DbConnection().getConnection();
-        try {
-        	User user = run.query(conn, "SELECT * FROM user WHERE username=?",
-                    resultHandler, username);
-        	if (user != null){
-        		List<Friend> friendList = FriendManager.getInstance().findFriends(user);
-        		if (friendList.size() > 0){
-        			user.setFriends(friendList);
-        		}
-        	}
-        	return user;
-            
-        } finally {
-            DbUtils.close(conn);
-        }
+		String statement = "SELECT * FROM user WHERE username=\""+username+"\"";
+		User user = (User) DbManagement.getInstance().executeQuery(statement, User.class);
+    	if (user != null){
+    		List<Friend> friendList = FriendManager.getInstance().findFriends(user);
+    		if (friendList.size() > 0){
+    			user.setFriends(friendList);
+    		}
+    		return user;
+    	}
+    	return null;
 	}
 	
 	public int update(User user) throws SQLException{

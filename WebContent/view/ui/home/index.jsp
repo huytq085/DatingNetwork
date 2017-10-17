@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:template bodyClass="top-navigation pace-done" user="${user}">
+<t:layout bodyClass="top-navigation pace-done" user="${user}">
     <jsp:attribute name="header">
         <title>Homepage</title>
         <link href="public/css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
     <script src="public/js/plugins/toastr/toastr.min.js"></script>
     	
         <script>
-        	if ('${statusSignup}' == 'success'){
+        	if (getCookie('statusSignup') == 'success'){
         		setTimeout(function() {
                     toastr.options = {
                         closeButton: true,
@@ -22,13 +22,12 @@
                         timeOut: 4000
                     };
                     toastr.success('Your account has been created successfully and is ready to use', 'Welcome to INSPINIA');
-
+                    removeCookie('statusSignup')
                 }, 1300);
         	}
             $(document).ready(function() {
                 var defaultAvt = 'public/img/default-avt.jpg'
                 $.get('hotprofile', function(data) {
-                    console.log(data)
                     for (var key in data) {
                         if (data.hasOwnProperty(key)) {
                             var element = data[key];
@@ -363,4 +362,4 @@
         </div>
 
     </jsp:body>
-</t:template>
+</t:layout>

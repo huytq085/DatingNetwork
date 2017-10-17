@@ -7,7 +7,7 @@
 	String avatar = userProfile.getAvatar() != null ? userProfile.getAvatar() : "public/img/default-avt.jpg";
 	request.setAttribute("avatar", avatar);
 %>
-<t:template bodyClass="top-navigation pace-done">
+<t:layout bodyClass="top-navigation pace-done">
     <jsp:attribute name="header">
         <title>Trang cá nhân | ${userProfile.fullName}</title>
     </jsp:attribute>
@@ -243,4 +243,4 @@
             </div>
         </div>
     </jsp:body>
-</t:template>
+</t:layout>

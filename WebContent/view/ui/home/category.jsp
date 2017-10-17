@@ -4,7 +4,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-<t:template bodyClass="top-navigation pace-done" user="${user}">
+<t:layout bodyClass="top-navigation pace-done" user="${user}">
     <jsp:attribute name="header">
         <title>Homepage</title>
     </jsp:attribute>
@@ -12,11 +12,6 @@
         
     </jsp:attribute>
     <jsp:body>
-        <c:if test="${statusSignup == 'success'}">
-            <div class="alert alert-success">
-                <strong>Success!</strong> Indicates a successful or positive action.
-            </div>
-        </c:if>
         <div class="wrapper wrapper-content">
             <div class="container">
                 <div class="row">
@@ -59,4 +54,4 @@
         </div>
 
     </jsp:body>
-</t:template>
+</t:layout>
