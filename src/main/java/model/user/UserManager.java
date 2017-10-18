@@ -1,16 +1,9 @@
 package main.java.model.user;
 
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.dbutils.DbUtils;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.BeanHandler;
-
-import main.java.common.DbConnection;
 import main.java.common.DbManagement;
 import main.java.common.JsonUtils;
 
@@ -57,16 +50,22 @@ public class UserManager {
 	
 	public int update(User user) throws SQLException{
 		int result = 0;
-		
-		String data = JsonUtils.encode(user);
-		Map<String, Object> params = JsonUtils.decode(data, Map.class);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("address", user.getAddress());
+		params.put("sex", user.getSex());
+		params.put("fullName", user.getFullName());
+		params.put("description", user.getDescription());
+		params.put("avatar", user.getAvatar());
+		params.put("email", user.getEmail());
+		params.put("matrimony", user.getMatrimony());
+		params.put("status", user.getStatus());
 		params.put("dateAdded", "2014-10-03 11:12:21");
 		try {
 			User row = findByUserName(user.getUserName());
 			if (row == null){
 				result = DbManagement.getInstance().insert("user", params);
 			} else {
-				return 0;
+				result = DbManagement.getInstance().update("user", params, "username=\"" + user.getUserName() + "\"");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

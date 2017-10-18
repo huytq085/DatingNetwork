@@ -92,6 +92,7 @@ private static DbManagement dbManagement;
 					preStatement = String.format(preStatement, key[i] + ",%s","?,%s");
 				}
 			}
+			System.out.println(String.format(statement, tableName, preStatement));
 			int inserts = run.update(conn, String.format(statement, tableName, preStatement), params.values().toArray());
 			return inserts;
 		} catch (SQLException e) {

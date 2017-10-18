@@ -82,6 +82,12 @@ public class HomeController extends HttpServlet {
 			case "/category":
 				category(request, response);
 				break;
+			case "/account/settings":
+				settings(request, response);
+				break;
+			case "/account/update":
+				updateAccount(request, response);
+				break;
 			default:
 				break;
 			}
@@ -224,9 +230,28 @@ public class HomeController extends HttpServlet {
 		return listProfile.size() > 0 ? JsonUtils.encode(listProfile) : null;
 	}
 
-	public String getProfile(String username) {
-		String result = "";
-		return result;
+	
+	public void settings(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user != null){
+			try {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/settings.jsp");
+				dispatcher.forward(request, response);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 
 	}
 
@@ -285,5 +310,64 @@ public class HomeController extends HttpServlet {
 			}
 		}
 
+	}
+	private void updateAccount(HttpServletRequest request, HttpServletResponse response) {
+		if (request.getMethod().equals("POST")) {
+			System.out.println("update");
+			HttpSession session = request.getSession();
+			User user = (User) session.getAttribute("user");
+			session.removeAttribute("user");
+			if (user != null){
+				System.out.println("!= null");
+				String email = request.getParameter("email");
+				String fullName = request.getParameter("fullName");
+				String sex = request.getParameter("sex");
+				String matrimony = request.getParameter("matrimony");
+				String description = request.getParameter("description");
+				String avatar = request.getParameter("avatar");
+				String city = request.getParameter("city");
+				String address = request.getParameter("address");
+				if (avatar == null){
+					avatar = getServletContext().getInitParameter("defaultAvatar");
+				}
+				user.setFullName(fullName);
+				user.setEmail(email);
+				user.setSex(sex);
+				user.setStatus("ACT");
+				user.setMatrimony(matrimony);
+				user.setAvatar(avatar);
+				user.setDescription(description);
+				user.setCity(city);
+				user.setAddress(address);
+				
+				try {
+					if (UserManager.getInstance().update(user) != 0) {
+						Cookie userCookie = new Cookie("statusUpdate", "success");
+						response.addCookie(userCookie);
+						System.out.println("statusUpdate success");
+						session.setAttribute("user", user);
+						response.sendRedirect(request.getContextPath() + "/account/settings");
+						
+					} else {
+						System.out.println("error");
+						Cookie userCookie = new Cookie("statusUpdate", "error");
+						response.addCookie(userCookie);
+						session.setAttribute("user", UserManager.getInstance().findByUserName(user.getUserName()));
+						response.sendRedirect(request.getContextPath() + "/account/settings");
+
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					response.sendError(HttpServletResponse.SC_NOT_FOUND);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

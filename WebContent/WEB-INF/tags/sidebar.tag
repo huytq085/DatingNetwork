@@ -133,7 +133,7 @@
 		                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <span class="caret"></span></a>
 		                    <ul role="menu" class="dropdown-menu">
 		                        <li>
-		                        	<a href="">
+		                        	<a href="account/settings">
 		                        		<i class="fa fa-cog"></i> Settings
 		                        	</a>
 		                        </li>

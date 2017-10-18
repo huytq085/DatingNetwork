@@ -6,12 +6,8 @@
 <t:layout bodyClass="top-navigation pace-done" user="${user}">
     <jsp:attribute name="header">
         <title>Homepage</title>
-        <link href="public/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     </jsp:attribute>
     <jsp:attribute name="footer">
-    	<!-- Toastr -->
-    <script src="public/js/plugins/toastr/toastr.min.js"></script>
-    	
         <script>
         	if (getCookie('statusSignup') == 'success'){
         		setTimeout(function() {

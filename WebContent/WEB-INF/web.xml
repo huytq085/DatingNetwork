@@ -34,6 +34,8 @@
     <url-pattern></url-pattern>
     <url-pattern>/index</url-pattern>
     <url-pattern>/category/*</url-pattern>
+    <url-pattern>/account/settings</url-pattern>
+    <url-pattern>/account/update</url-pattern>
   </servlet-mapping>
 
 </web-app>

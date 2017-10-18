@@ -2,6 +2,7 @@
 <script src="public/js/jquery-2.1.1.js"></script>
 <script src="public/js/bootstrap.min.js"></script>
 <script src="public/js/plugins/iCheck/icheck.min.js"></script>
+<script src="public/js/plugins/toastr/toastr.min.js"></script>
 <script>
 function getCookie(cname) {
     var name = cname + "=";
