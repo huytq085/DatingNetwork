@@ -3,6 +3,8 @@
 <script src="public/js/bootstrap.min.js"></script>
 <script src="public/js/plugins/iCheck/icheck.min.js"></script>
 <script src="public/js/plugins/toastr/toastr.min.js"></script>
+<script src="public/js/plugins/ckeditor/ckeditor.js"></script>
+
 <script>
 function getCookie(cname) {
     var name = cname + "=";

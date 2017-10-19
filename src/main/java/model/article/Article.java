@@ -7,6 +7,7 @@ import main.java.model.comment.Comment;
 
 public class Article {
 	private String subject;
+	private int userid;
 	private String content;
 	private List<String> tags;
 	private List<String> categories;
@@ -62,6 +63,12 @@ public class Article {
 	}
 	public void setDateAdded(Date dateAdded) {
 		this.dateAdded = dateAdded;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	
 	

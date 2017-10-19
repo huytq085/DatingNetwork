@@ -1,11 +1,14 @@
 package main.java.model.user;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import main.java.common.DbManagement;
-import main.java.common.JsonUtils;
+import main.java.model.article.Article;
+import main.java.model.article.ArticleManager;
 
 public class UserManager {
 	
@@ -30,6 +33,10 @@ public class UserManager {
     		if (friendList.size() > 0){
     			user.setFriends(friendList);
     		}
+    		List<Article> articleList = ArticleManager.getInstance().findArticles(user);
+    		if (articleList.size() > 0){
+    			user.setArticles(articleList);
+    		}
     		return user;
     	}
     	return null;
@@ -42,6 +49,11 @@ public class UserManager {
     		List<Friend> friendList = FriendManager.getInstance().findFriends(user);
     		if (friendList.size() > 0){
     			user.setFriends(friendList);
+    		}
+    		List<Article> articleList = new ArrayList<Article>();
+    		articleList = ArticleManager.getInstance().findArticles(user);
+    		if (!articleList.isEmpty() && articleList.size() > 0){
+    			user.setArticles(articleList);
     		}
     		return user;
     	}
@@ -60,6 +72,7 @@ public class UserManager {
 		params.put("matrimony", user.getMatrimony());
 		params.put("status", user.getStatus());
 		params.put("dateAdded", "2014-10-03 11:12:21");
+		System.out.println("Des: " + params.get("description"));
 		try {
 			User row = findByUserName(user.getUserName());
 			if (row == null){

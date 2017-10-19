@@ -54,6 +54,8 @@ public class HomeController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("here");
+		response.setContentType("text/html;charset=UTF-8"); 
+		request.setCharacterEncoding("UTF-8");
 		String requestUrl = request.getServletPath();
 		if (requestUrl != null) {
 			System.out.println(requestUrl);
@@ -313,7 +315,6 @@ public class HomeController extends HttpServlet {
 	}
 	private void updateAccount(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getMethod().equals("POST")) {
-			System.out.println("update");
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
 			session.removeAttribute("user");
@@ -324,6 +325,8 @@ public class HomeController extends HttpServlet {
 				String sex = request.getParameter("sex");
 				String matrimony = request.getParameter("matrimony");
 				String description = request.getParameter("description");
+				System.out.println("Test: Cập nhật");
+				System.out.println(description);
 				String avatar = request.getParameter("avatar");
 				String city = request.getParameter("city");
 				String address = request.getParameter("address");
