@@ -15,6 +15,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import main.java.common.DbConnection;
+import main.java.common.DbManagement;
 import main.java.common.JsonUtils;
 
 public class FriendManager {
@@ -31,20 +32,14 @@ public class FriendManager {
 	}
 
 	public List<Friend> findFriends(User user) throws SQLException {
-		QueryRunner run = new QueryRunner();
-		Connection conn = new DbConnection().getConnection();
-		ResultSetHandler<List<Friend>> resultListHandler = new BeanListHandler<Friend>(Friend.class);
 		List<Friend> friendList = new ArrayList<Friend>();
-		try {
-			friendList = run.query(conn, "SELECT * FROM friend where user1=" + user.getId(), resultListHandler);
-			if (friendList.size() > 0) {
-				return friendList;
-			}
-			
-		} finally {
-			DbUtils.close(conn);
+		String stm = "SELECT * FROM friend where user1=" + user.getId(); 
+		friendList = DbManagement.getInstance().findAll(stm, Friend.class);
+		if (friendList.size() > 0) {
+			return friendList;
 		}
 		return friendList;
+		
 	}
 
 	public static void main(String[] args) {

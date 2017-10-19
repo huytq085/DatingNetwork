@@ -1,11 +1,15 @@
 package main.java.model.user;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import main.java.common.DbManagement;
-import main.java.common.JsonUtils;
+import main.java.model.article.Article;
+import main.java.model.article.ArticleManager;
 
 public class UserManager {
 	
@@ -22,17 +26,10 @@ public class UserManager {
 		return userManager;
 	}
 	
-	public User findByEmail(String email) throws Exception{
-		String statement = "SELECT * FROM user WHERE user = email=\""+email+"\"";
-		User user = (User) DbManagement.getInstance().executeQuery(statement, User.class);
-    	if (user != null){
-    		List<Friend> friendList = FriendManager.getInstance().findFriends(user);
-    		if (friendList.size() > 0){
-    			user.setFriends(friendList);
-    		}
-    		return user;
-    	}
-    	return null;
+	public List<User> getNewProfile(){
+		List<User> list = new ArrayList<User>();
+		
+		return list;
 	}
 	
 	public User findByUserName(String username) throws Exception{
@@ -42,6 +39,11 @@ public class UserManager {
     		List<Friend> friendList = FriendManager.getInstance().findFriends(user);
     		if (friendList.size() > 0){
     			user.setFriends(friendList);
+    		}
+    		List<Article> articleList = new ArrayList<Article>();
+    		articleList = ArticleManager.getInstance().findArticles(user);
+    		if (!articleList.isEmpty() && articleList.size() > 0){
+    			user.setArticles(articleList);
     		}
     		return user;
     	}
@@ -59,7 +61,7 @@ public class UserManager {
 		params.put("email", user.getEmail());
 		params.put("matrimony", user.getMatrimony());
 		params.put("status", user.getStatus());
-		params.put("dateAdded", "2014-10-03 11:12:21");
+		params.put("dateAdded", new Date());
 		try {
 			User row = findByUserName(user.getUserName());
 			if (row == null){

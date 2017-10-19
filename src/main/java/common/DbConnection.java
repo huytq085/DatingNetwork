@@ -12,7 +12,7 @@ import main.java.model.user.User;
 
 public class DbConnection {
 	private static DbConnection dbConn;
-	private static final String url = "jdbc:mysql://localhost:3306/dating_datastore?useSSL=false";
+	private static final String url = "jdbc:mysql://localhost:3306/dating_datastore?useSSL=false&characterEncoding=UTF-8";
 	private static final String driver = "com.mysql.jdbc.Driver";
 	private static final String usr = "root";
     final String pwd = "abc@123";

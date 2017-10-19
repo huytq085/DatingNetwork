@@ -1,13 +1,9 @@
 package main.java.controllers.ui;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,18 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.dbutils.DbUtils;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.MapListHandler;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
-import main.java.common.DbConnection;
 import main.java.common.DbManagement;
 import main.java.common.JsonUtils;
+import main.java.model.article.Article;
+import main.java.model.article.ArticleManager;
 import main.java.model.user.User;
 import main.java.model.user.UserManager;
 
@@ -53,10 +44,10 @@ public class HomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("here");
+		response.setContentType("text/html;charset=UTF-8"); 
+		request.setCharacterEncoding("UTF-8");
 		String requestUrl = request.getServletPath();
 		if (requestUrl != null) {
-			System.out.println(requestUrl);
 			switch (requestUrl) {
 			case "/hotprofile":
 				hotProfile(request, response);
@@ -87,6 +78,9 @@ public class HomeController extends HttpServlet {
 				break;
 			case "/account/update":
 				updateAccount(request, response);
+				break;
+			case "/article":
+				article(request, response);
 				break;
 			default:
 				break;
@@ -119,13 +113,11 @@ public class HomeController extends HttpServlet {
 
 	public void category(HttpServletRequest request, HttpServletResponse response) {
 		String sex = request.getPathInfo().split("/")[1];
-		System.out.println("sex");
 		if (sex != null && sex.toLowerCase().matches("male|female|gay|les")) {
 			List<User> listProfile = new ArrayList<>();
 			String stm = "SELECT * FROM user WHERE sex=\"" + sex + "\"";
 			listProfile = DbManagement.getInstance().findAll(stm, User.class);
 			if (listProfile.size() > 0) {
-				System.out.println("list");
 				request.setAttribute("listProfile", listProfile);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/category.jsp");
 				try {
@@ -183,7 +175,6 @@ public class HomeController extends HttpServlet {
 			session.removeAttribute("user");
 		}
 		try {
-			System.out.println("signout");
 			response.sendRedirect(request.getContextPath());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -193,7 +184,6 @@ public class HomeController extends HttpServlet {
 
 	private void user(HttpServletRequest request, HttpServletResponse response) {
 		String username = request.getPathInfo().split("/")[1];
-		System.out.println("profileInfo: " + username);
 
 		try {
 			User user = UserManager.getInstance().findByUserName(username);
@@ -212,7 +202,7 @@ public class HomeController extends HttpServlet {
 
 	private void hotProfile(HttpServletRequest request, HttpServletResponse response) {
 		List<User> listProfile = new ArrayList<User>();
-		String stm = "SELECT * FROM user";
+		String stm = "SELECT * FROM user ORDER BY dateAdded DESC LIMIT 9";
 		listProfile = DbManagement.getInstance().findAll(stm, User.class);
 		try {
 			response.setContentType("application/json");
@@ -229,7 +219,56 @@ public class HomeController extends HttpServlet {
 		listProfile = DbManagement.getInstance().findAll(stm, User.class);
 		return listProfile.size() > 0 ? JsonUtils.encode(listProfile) : null;
 	}
-
+	
+	public void article(HttpServletRequest request, HttpServletResponse response) {
+		if(request.getMethod().equalsIgnoreCase("POST")){
+			HttpSession session = request.getSession();
+			User user = (User) session.getAttribute("user");
+			if (user != null){
+				try {
+					JsonObject data = new Gson().fromJson(request.getReader(), JsonObject.class);
+					String subject = data.get("subject").getAsString();
+					String content = data.get("content").getAsString();
+					if (subject != null && content != null){
+						Article article = new Article();
+						article.setSubject(subject);
+						article.setContent(content);
+						article.setUserid(user.getId());
+						article.setView(0);
+						if (ArticleManager.getInstance().update(article) != 0){
+							response.setContentType("application/json");
+							response.getWriter().write("{\"ok\": true}");
+						}
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} else {
+			int articleId = Integer.parseInt(request.getPathInfo().split("/")[1]);
+			Article article = ArticleManager.getInstance().findByPk(articleId);
+			
+			if (article != null){
+				try {
+					request.setAttribute("article", article);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/view/ui/home/article.jsp");
+					dispatcher.forward(request, response);
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					response.sendError(HttpServletResponse.SC_NOT_FOUND);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	public void settings(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -251,8 +290,6 @@ public class HomeController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-
 	}
 
 	private void signup(HttpServletRequest request, HttpServletResponse response) {
@@ -313,12 +350,10 @@ public class HomeController extends HttpServlet {
 	}
 	private void updateAccount(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getMethod().equals("POST")) {
-			System.out.println("update");
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
 			session.removeAttribute("user");
 			if (user != null){
-				System.out.println("!= null");
 				String email = request.getParameter("email");
 				String fullName = request.getParameter("fullName");
 				String sex = request.getParameter("sex");
@@ -344,12 +379,10 @@ public class HomeController extends HttpServlet {
 					if (UserManager.getInstance().update(user) != 0) {
 						Cookie userCookie = new Cookie("statusUpdate", "success");
 						response.addCookie(userCookie);
-						System.out.println("statusUpdate success");
 						session.setAttribute("user", user);
 						response.sendRedirect(request.getContextPath() + "/account/settings");
 						
 					} else {
-						System.out.println("error");
 						Cookie userCookie = new Cookie("statusUpdate", "error");
 						response.addCookie(userCookie);
 						session.setAttribute("user", UserManager.getInstance().findByUserName(user.getUserName()));

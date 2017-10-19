@@ -6,15 +6,23 @@ import java.util.List;
 import main.java.model.comment.Comment;
 
 public class Article {
+	private int id;
 	private String subject;
+	private int userid;
 	private String content;
 	private List<String> tags;
 	private List<String> categories;
-	private long updateAt;
+	private Date updatedAt;
 	private int view;
 	private List<Comment> comments;
-	private Date dateAdded;
+	private long dateAdded;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getSubject() {
 		return subject;
 	}
@@ -39,11 +47,11 @@ public class Article {
 	public void setCategories(List<String> categories) {
 		this.categories = categories;
 	}
-	public long getUpdateAt() {
-		return updateAt;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdateAt(long updateAt) {
-		this.updateAt = updateAt;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	public int getView() {
 		return view;
@@ -57,11 +65,17 @@ public class Article {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	public Date getDateAdded() {
+	public long getDateAdded() {
 		return dateAdded;
 	}
-	public void setDateAdded(Date dateAdded) {
+	public void setDateAdded(long dateAdded) {
 		this.dateAdded = dateAdded;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	
 	

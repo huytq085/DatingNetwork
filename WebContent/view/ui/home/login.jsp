@@ -13,24 +13,19 @@
              <div class="row">
 
                  <div class="col-md-6">
-                     <h2 class="font-bold">Welcome to IN+</h2>
+                     <h2 class="font-bold">Kết bạn bốn phương</h2>
 
                      <p>
-                         Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+                         Từ xưa đến nay tình yêu và hôn nhân vẫn là những việc lớn nhất trong cuộc đời mỗi con người. Tuy nhiên việc tìm thấy "nửa kia" thật tâm đầu ý hợp không phải lúc nào cũng là việc dễ dàng, nhất là với những chàng trai, cô gái công sở, vốn bận rộn hay phải làm việc trong môi trường hạn chế.
                      </p>
 
                      <p>
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                         Với mục đích tạo cơ hội cho các bạn trẻ đang mong muốn tìm kiếm tình yêu gặp được ý trung nhân, một nửa của mình, henho2.com đã ra đời với mục đích đó.
                      </p>
 
                      <p>
-                         When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                         Với mong muốn tạo ra 1 môi trường để những người độc thân có cơ hội được giao lưu, tiếp xúc với nhau nhiều hơn nữa henho2.com đã không ngường cải tiến dịch vụ và cho ra mắt nhiều phiên bản mới với nhiều tính năng hấp dẫn hơn, không đơn thuần là trang web phục vụ cho sự kiện offline mà còn mang đến cho các thành viên cơ hội giao lưu, tìm kiến bạn đời online.
                      </p>
-
-                     <p>
-                         <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
-                     </p>
-
                  </div>
                  <div class="col-md-6">
                      <div class="ibox-content">
@@ -39,25 +34,22 @@
                          </c:if>
                          <form class="m-t" role="form" action="signin" method="POST">
                              <div class="form-group">
-                                 <input type="text" class="form-control" name="username" placeholder="Username" required="">
+                                 <input type="text" class="form-control" name="username" placeholder="Tên tài khoản" required="">
                              </div>
                              <div class="form-group">
-                                 <input type="password" class="form-control" name="password" placeholder="Password" required="">
+                                 <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required="">
                              </div>
-                             <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                             <button type="submit" class="btn btn-primary block full-width m-b">Đăng nhập</button>
 
                              <a href="#">
-                                 <small>Forgot password?</small>
+                                 <small>Quển mật khẩu?</small>
                              </a>
 
                              <p class="text-muted text-center">
-                                 <small>Do not have an account?</small>
+                                 <small>Không có tài khoản?</small>
                              </p>
-                             <a class="btn btn-sm btn-white btn-block" href="signup">Create an account</a>
+                             <a class="btn btn-sm btn-white btn-block" href="signup">Đăng ký</a>
                          </form>
-                         <p class="m-t">
-                             <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>
-                         </p>
                      </div>
                  </div>
              </div>

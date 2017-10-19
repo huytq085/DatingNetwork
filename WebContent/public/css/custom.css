@@ -4,3 +4,16 @@
     margin: 0 auto;
     padding-top: 40px;
 }
+.article-content-ellipsis,
+.article-content-ellipsis p,
+.article-content-ellipsis h1,
+.article-content-ellipsis h2,
+.article-content-ellipsis h3,
+.article-content-ellipsis h4,
+.article-content-ellipsis h5 {
+	white-space: nowrap; 
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	max-width: 500px;
+	max-height: 20px;
+}

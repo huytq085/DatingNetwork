@@ -19,10 +19,10 @@
             <ul class="nav navbar-top-links navbar-right">
             	<c:if test="${not empty user.fullName}">
                    <li>
-				        <span class="m-r-sm text-muted welcome-message">Hello, <a href="user/${user.getUserName()}" style="padding: 0;"><strong>${user.fullName}</strong> </a></span>
+				        <span class="m-r-sm text-muted welcome-message">Xin chào, <a href="user/${user.getUserName()}" style="padding: 0;"><strong>${user.fullName}</strong> </a></span>
 				    </li>
                  </c:if>
-                
+                <!--  
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
@@ -118,28 +118,28 @@
                         </li>
                     </ul>
                 </li>
-
+				-->
 				
                 <c:choose>
 				    <c:when test="${empty user.fullName}">
 				        <li>
 		                    <a href="signin">
-		                        <i class="fa fa-sign-out"></i> Log in
+		                        <i class="fa fa-sign-out"></i> Đăng nhập
 		                    </a>
 		                </li>
 				    </c:when>
 				    <c:otherwise>
 						<li class="dropdown">
-		                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <span class="caret"></span></a>
+		                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Tài khoản <span class="caret"></span></a>
 		                    <ul role="menu" class="dropdown-menu">
 		                        <li>
 		                        	<a href="account/settings">
-		                        		<i class="fa fa-cog"></i> Settings
+		                        		<i class="fa fa-cog"></i> Cài đặt
 		                        	</a>
 		                        </li>
 		                        <li>
 				                    <a href="signout">
-				                        <i class="fa fa-sign-in"></i> Log out
+				                        <i class="fa fa-sign-in"></i> Đăng xuất
 				                    </a>
 				                </li>
 		                    </ul>

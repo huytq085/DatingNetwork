@@ -43,7 +43,6 @@ private static DbManagement dbManagement;
 		try {
 			conn = new DbConnection().getConnection();
 			try {
-				System.out.println(statement);
 	        	T t = run.query(conn, statement, resultHandler);
 	        	if (t != null){
 	        		return t;
@@ -92,7 +91,6 @@ private static DbManagement dbManagement;
 					preStatement = String.format(preStatement, key[i] + ",%s","?,%s");
 				}
 			}
-			System.out.println(String.format(statement, tableName, preStatement));
 			int inserts = run.update(conn, String.format(statement, tableName, preStatement), params.values().toArray());
 			return inserts;
 		} catch (SQLException e) {
@@ -116,7 +114,6 @@ private static DbManagement dbManagement;
 					preStatement = preStatement.concat((String)key[i] + "=?,");
 				}
 			}
-			System.out.println(String.format(statement, tableName, preStatement,condition));
 			int inserts = run.update(conn, String.format(statement, tableName, preStatement,condition), params.values().toArray());
 			return inserts;
 		} catch (SQLException e) {
@@ -134,11 +131,6 @@ private static DbManagement dbManagement;
 	        try {
 	        	User user = run.query(conn, "SELECT * FROM user WHERE username=?",
 	                    resultHandler, "admin");
-	            if (user != null){
-	            	System.out.println(user.getUserName());
-	            } else {
-	            	System.out.println("Not exist");
-	            }
 	        } finally {
 	            DbUtils.close(conn);
 	        }

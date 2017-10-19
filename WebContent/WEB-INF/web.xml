@@ -36,6 +36,7 @@
     <url-pattern>/category/*</url-pattern>
     <url-pattern>/account/settings</url-pattern>
     <url-pattern>/account/update</url-pattern>
+    <url-pattern>/article/*</url-pattern>
   </servlet-mapping>
 
 </web-app>
