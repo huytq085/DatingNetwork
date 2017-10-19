@@ -43,7 +43,6 @@ private static DbManagement dbManagement;
 		try {
 			conn = new DbConnection().getConnection();
 			try {
-				System.out.println(statement);
 	        	T t = run.query(conn, statement, resultHandler);
 	        	if (t != null){
 	        		return t;
@@ -92,7 +91,6 @@ private static DbManagement dbManagement;
 					preStatement = String.format(preStatement, key[i] + ",%s","?,%s");
 				}
 			}
-			System.out.println(String.format(statement, tableName, preStatement));
 			int inserts = run.update(conn, String.format(statement, tableName, preStatement), params.values().toArray());
 			return inserts;
 		} catch (SQLException e) {
@@ -108,7 +106,6 @@ private static DbManagement dbManagement;
 			Connection conn = new DbConnection().getConnection();
 			String statement = "UPDATE %s SET %s WHERE %s";
 			String preStatement = "";
-			System.out.println("Des: " + params.get("description"));
 			Object[] key = params.keySet().toArray();
 			for (int i = 0; i< params.size(); i++){
 				if (i == params.size()-1){
@@ -116,11 +113,6 @@ private static DbManagement dbManagement;
 				} else {
 					preStatement = preStatement.concat((String)key[i] + "=?,");
 				}
-			}
-			System.out.println(String.format(statement, tableName, preStatement,condition));
-			System.out.println();
-			for (int i = 0;i < params.values().toArray().length; i++){
-				System.out.println(params.values().toArray()[i]);
 			}
 			int inserts = run.update(conn, String.format(statement, tableName, preStatement,condition), params.values().toArray());
 			return inserts;
@@ -139,11 +131,6 @@ private static DbManagement dbManagement;
 	        try {
 	        	User user = run.query(conn, "SELECT * FROM user WHERE username=?",
 	                    resultHandler, "admin");
-	            if (user != null){
-	            	System.out.println(user.getUserName());
-	            } else {
-	            	System.out.println("Not exist");
-	            }
 	        } finally {
 	            DbUtils.close(conn);
 	        }

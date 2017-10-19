@@ -16,10 +16,9 @@
                     <h1 class="logo-name">IN+</h1>
 
                 </div>
-                <h3>Register to IN+</h3>
-                <p>Create account to see it in action.</p>
+                <h3>Đăng ký mới</h3>
                 <c:if test="${statusSignup == 'invalid'}">
-                    <p style="color: red;">Email or Username already exists</p>
+                    <p style="color: red;">Tên tài khoản hoặc email đã được đăng ký</p>
                 </c:if>
                 <form class="m-t" role="form" action="signup" method="POST">
                     <div class="col-md-12 form-horizontal">
@@ -793,14 +792,13 @@
                         
                        
                     </div> -->
-                    <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+                    <button type="submit" class="btn btn-primary block full-width m-b">Đăng ký</button>
 
                     <p class="text-muted text-center">
-                        <small>Already have an account?</small>
+                        <small>Đã có tài khoản?</small>
                     </p>
-                    <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                    <a class="btn btn-sm btn-white btn-block" href="signin">Đăng nhập</a>
                 </form>
-                <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
             </div>
         </div>
     </jsp:body>
