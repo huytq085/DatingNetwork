@@ -7,7 +7,7 @@
 
 <t:layout bodyClass="top-navigation pace-done" user="${user}">
     <jsp:attribute name="header">
-        <title>Homepage</title>
+        <title>Lọc hồ sơ</title>
     </jsp:attribute>
     <jsp:attribute name="footer">
         

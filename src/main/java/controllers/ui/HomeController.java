@@ -323,7 +323,8 @@ public class HomeController extends HttpServlet {
 			
 			try {
 				if (UserManager.getInstance().update(user) != 0) {
-					session.setAttribute("user", user);
+					User newUser = UserManager.getInstance().findByUserName(username);
+					session.setAttribute("user", newUser);
 					Cookie userCookie = new Cookie("statusSignup", "success");
 					response.addCookie(userCookie);
 					response.sendRedirect(request.getContextPath());

@@ -53,6 +53,8 @@ public class UserManager {
 	public int update(User user) throws SQLException{
 		int result = 0;
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", user.getUserName());
+		params.put("password", user.getPassword());
 		params.put("address", user.getAddress());
 		params.put("sex", user.getSex());
 		params.put("fullName", user.getFullName());

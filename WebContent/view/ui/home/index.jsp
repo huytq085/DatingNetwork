@@ -5,7 +5,7 @@
 
 <t:layout bodyClass="top-navigation pace-done" user="${user}">
     <jsp:attribute name="header">
-        <title>Homepage</title>
+        <title>Trang chủ</title>
     </jsp:attribute>
     <jsp:attribute name="footer">
         <script>
@@ -17,7 +17,7 @@
                         showMethod: 'slideDown',
                         timeOut: 4000
                     };
-                    toastr.success('Your account has been created successfully and is ready to use', 'Welcome to INSPINIA');
+                    toastr.success('Đăng ký tài khoản thành công', 'Thông báo');
                     removeCookie('statusSignup')
                 }, 1300);
         	}
@@ -338,7 +338,6 @@
                 </div>
 -->
                 <div class="row">
-
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -350,12 +349,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </jsp:body>
 </t:layout>

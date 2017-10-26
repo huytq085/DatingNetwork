@@ -13,8 +13,10 @@
             <ul class="nav navbar-nav">
                 <li><a href="category/female">Tìm bạn gái</a></li>
                 <li><a href="category/male">Tìm bạn trai</a></li>
+                <!-- 
                 <li><a href="category/gay">Gay</a></li>
                 <li><a href="category/les">Les</a></li>
+                -->
             </ul>
             <ul class="nav navbar-top-links navbar-right">
             	<c:if test="${not empty user.fullName}">

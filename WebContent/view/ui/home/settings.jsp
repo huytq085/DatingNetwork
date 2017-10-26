@@ -11,7 +11,7 @@
 		<script>
 			
             $(document).ready(function () {
-            	if (Cookies.get('statusUpdate') == 'success'){
+            	if (getCookie('statusUpdate') == 'success'){
     	    		setTimeout(function() {
     	                toastr.options = {
     	                    closeButton: true,
@@ -20,11 +20,11 @@
     	                    timeOut: 4000
     	                };
     	                toastr.success('Cập nhật thông tin thành công', 'Thông báo');
-    	                Cookies.remove('statusUpdate')
+    	                removeCookie('statusUpdate')
     	            }, 1300);
-    	    	} else if (Cookies.get('statusUpdate') == 'error'){
+    	    	} else if (getCookie('statusUpdate') == 'error'){
             		$('input[name="email"]').closest('.form-group').addClass('has-error')
-            		Cookies.remove('statusUpdate')
+            		removeCookie('statusUpdate')
             	}
                 $('select[name="sex"]').val('${user.sex}')
                 $('select[name="matrimony"]').val('${user.matrimony}')
